@@ -1,4 +1,4 @@
-:80 {
+server-of-Bjarni.pxl.bjth.xyz {
 	root * /var/www/html
 	php_fastcgi cgi:9000 {
 		root /var/www/html
