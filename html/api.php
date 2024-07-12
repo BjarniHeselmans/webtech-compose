@@ -1,10 +1,10 @@
 <?php
 header("Content-Type: application/json");
 
-$servername = "localhost";
-$username = "root";
-$password = "1EAId";
-$dbname = "testdb";
+$servername = "server-of-Bjarni.pxl.bjth.xyz";
+$username = "bjarni heselmans";
+$password = "BjArNi";
+$dbname = "Website_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
