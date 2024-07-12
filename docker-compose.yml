@@ -3,7 +3,8 @@ services:
   webserver:
     image: "caddy"
     ports:
-      - "8080:80"
+      - "80:80"
+      - "433:433"
     volumes:
       - "$PWD/html:/var/www/html"
       - "$PWD/Caddyfile:/etc/caddy/Caddyfile"
@@ -21,10 +22,18 @@ services:
   db:
     image: "postgres"
     environment:
-      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "Website_db
+      POSTGRES_USER: "bjarni heselmans"
+      POSTGRES_PASSWORD: "BjArNi"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      
   adminer:
     image: adminer
     ports:
       - "8888:8080"
     depends_on:
       - db
+
+volumes:
+  db_data:
