@@ -22,18 +22,12 @@ services:
   db:
     image: "postgres"
     environment:
-      POSTGRES_DB: "Website_db
+      POSTGRES_DB: "Website_db"
       POSTGRES_USER: "bjarni heselmans"
-      POSTGRES_PASSWORD: "BjArNi"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-      
+      POSTGRES_PASSWORD: "BjArNi"      
   adminer:
     image: adminer
     ports:
       - "8888:8080"
     depends_on:
       - db
-
-volumes:
-  db_data:
