@@ -8,7 +8,7 @@ def generate_random_temperature():
     return round(random.uniform(30.0, 50.0), 2)
 
 def send_temperature_to_server(temperature):
-    url = 'http://yourserver/api.php'  # Replace with your actual server URL
+    url = 'http://server-of-bjarni.pxl.bjth.xyz/api.php'  # Replace with your actual server URL
     data = {'temperature': temperature}
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, data=json.dumps(data), headers=headers)
