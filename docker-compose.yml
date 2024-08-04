@@ -1,10 +1,10 @@
-version: "3.9"
+version: '2.4'
 services:
   webserver:
     image: "caddy"
     ports:
       - "80:80"
-      - "433:433"
+      - "443:443"
     volumes:
       - "$PWD/html:/var/www/html"
       - "$PWD/Caddyfile:/etc/caddy/Caddyfile"
@@ -23,8 +23,8 @@ services:
     image: "postgres"
     environment:
       POSTGRES_DB: "Website_db"
-      POSTGRES_USER: "bjarni heselmans"
-      POSTGRES_PASSWORD: "BjArNi"      
+      POSTGRES_USER: "bjarni_heselmans"
+      POSTGRES_PASSWORD: "BjArNi"
   adminer:
     image: adminer
     ports:
