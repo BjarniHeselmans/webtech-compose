@@ -8,7 +8,7 @@ def generate_random_temperature():
     return round(random.uniform(30.0, 50.0), 2)
 
 def send_temperature_to_server(temperature):
-    url = 'http://server-of-bjarni.pxl.bjth.xyz/api.php'  # Replace with your actual server URL
+    url = 'http://server-of-bjarni.pxl.bjth.xyz/api.php'
     data = {'temperature': temperature}
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, data=json.dumps(data), headers=headers)
@@ -22,4 +22,4 @@ def send_temperature_to_server(temperature):
 while True:
     cpu_temp = generate_random_temperature()
     send_temperature_to_server(cpu_temp)
-    time.sleep(10)  # Adjust interval as needed
+    time.sleep(10)
