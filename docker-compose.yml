@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3.9'
 services:
   webserver:
     image: "caddy"
@@ -8,6 +8,7 @@ services:
     volumes:
       - "$PWD/html:/var/www/html"
       - "$PWD/Caddyfile:/etc/caddy/Caddyfile"
+      - "$PWD/postgres_volume:/var/lib/postgresql/data"
     depends_on:
       - cgi
       - db
@@ -17,17 +18,24 @@ services:
       dockerfile: "phpWithPgsql.Dockerfile"
     volumes:
       - "$PWD/html:/var/www/html"
+      - "$PWD/postgres_volume:/var/lib/postgresql/data"
     depends_on:
       - db
   db:
     image: "postgres"
     environment:
-      POSTGRES_DB: "Website_db"
-      POSTGRES_USER: "bjarni_heselmans"
-      POSTGRES_PASSWORD: "BjArNi"
+      POSTGRES_DB: "website_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "gfg"
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+
   adminer:
     image: adminer
     ports:
       - "8888:8080"
     depends_on:
       - db
+
+volumes:
+  postgres_volume:

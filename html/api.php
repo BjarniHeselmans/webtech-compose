@@ -4,9 +4,9 @@ header("Content-Type: application/json");
 // PostgreSQL connection parameters
 $host = "db"; // PostgreSQL container name or IP
 $port = "5432";
-$dbname = "Website_db";
-$user = "bjarni_heselmans";
-$password = "BjArNi";
+$dbname = "website_db";
+$user = "postgres";
+$password = "gfg";
 
 // Connect to PostgreSQL
 $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
