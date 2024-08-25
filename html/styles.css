@@ -1,0 +1,74 @@
+/* Default light mode styles */
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .w3-container {
+    background-color: #1e1e1e;
+  }
+  
+  .dark-mode .w3-bar {
+    background-color: #333;
+  }
+  
+  .dark-mode .w3-button {
+    background-color: #444;
+    color: #e0e0e0;
+  }
+  
+  .dark-mode .w3-button:hover {
+    background-color: #555;
+  }
+  
+  .dark-mode-container {
+    margin: 20px 0;
+  }
+  
+  .dark-mode-container .switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+  }
+  
+  .dark-mode-container .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .dark-mode-container .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+  }
+  
+  .dark-mode-container .slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(14px);
+  }
+  
