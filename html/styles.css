@@ -1,6 +1,6 @@
-/* Default light mode styles */
-
-/* Dark mode styles */
+/* Dark mode styles 
+Trieed testing this untill an error occured
+*/
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
