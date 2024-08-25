@@ -4,15 +4,15 @@
 Dit project is ontwikkeld om gegevens van een server op te halen, te verwerken, en te presenteren via een webinterface. Het systeem is opgebouwd uit verschillende componenten, waaronder een backend die de gegevens ophaalt en een frontend die deze gegevens dynamisch weergeeft.
 
 ## Inhoud
-- Project Beschrijving
-- Technische Specificaties
-- Systeemarchitectuur
-- Installatie
-- Gebruik
-- API Documentatie
-- Technologieën
-- Bijdragen
-- Licentie
+- [Project Beschrijving](#project-beschrijving)
+- [Technische Specificaties](#technische-specificaties)
+- [Systeemarchitectuur](#systeemarchitectuur)
+- [Installatie](#installatie)
+- [Gebruik](#gebruik)
+- [API Documentatie](#api-documentatie)
+- [Technologieën](#technologieën)
+- [Bijdragen](#bijdragen)
+- [Licentie](#licentie)
 
 ## Project Beschrijving
 Dit project haalt gegevens op van een server en verwerkt deze gegevens voor presentatie op een webpagina. De server slaat de gegevens op in een database en biedt een API aan waarmee de frontend periodiek de nieuwste gegevens kan ophalen en weergeven in een tabel.
