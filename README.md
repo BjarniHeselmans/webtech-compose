@@ -1,4 +1,4 @@
-# JouwServerProject
+# Webtechnologie Project Herkansing
 
 ## Overzicht
 Dit project is ontwikkeld om gegevens van een server op te halen, te verwerken, en te presenteren via een webinterface. Het systeem is opgebouwd uit verschillende componenten, waaronder een backend die de gegevens ophaalt en een frontend die deze gegevens dynamisch weergeeft.
@@ -63,7 +63,7 @@ Dit project haalt gegevens op van een server en verwerkt deze gegevens voor pres
     - Bezoek `http://server-of-bjarni.pxl.bjth.xyz/` in je webbrowser om de webinterface te bekijken.
 
 ## Gebruik
-- **Homepagina**: `index.html` biedt toegang tot de verschillende pagina's van het project.
+- **Homepagina**: `index.php` biedt toegang tot de verschillende pagina's van het project.
 - **Gegevenspagina**: Een HTML-pagina die een dynamische tabel toont met de nieuwste gegevens, welke automatisch wordt bijgewerkt.
   - **Let op**: De tijdstempels van de gegevens zijn afhankelijk van de servertijd, die mogelijk in een andere tijdzone staat.
 
