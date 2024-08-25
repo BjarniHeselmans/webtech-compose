@@ -1,0 +1,102 @@
+Server Configuration and API Development
+This document summarizes the process of configuring a server, setting up a PostgreSQL database, and developing a PHP API to interact with the database. It also includes details about the challenges encountered during the setup, particularly issues related to securing the server with HTTPS, and how these were addressed. Additional context is provided on the server’s about.html page.
+
+Table of Contents
+1. Server Setup
+2. PostgreSQL Database Setup
+3. API Development with PHP
+4. Troubleshooting Steps
+5. Issues Encountered
+6. Final Outcome
+7. Next Steps
+1. Server Setup
+The server environment was set up using Docker, with the primary goal of creating a web server that communicates with a PostgreSQL database.
+
+Docker Configuration:
+Containers:
+A container for the web server running PHP.
+A container for the PostgreSQL database.
+Network:
+Docker's internal network is used to allow communication between containers.
+PostgreSQL is running on its default port 5432.
+Issues Encountered:
+Port Redirection and Caddy Configuration:
+
+Initial attempts to access the API via HTTP were met with redirection to HTTPS by the Caddy web server.
+This caused unexpected behavior, as the API was not initially set up to handle HTTPS requests.
+The about.html page was later updated to explain this redirection issue and its impact on the setup process.
+Early SSL/TLS Issues:
+
+During the second chance period, a major problem was encountered when attempting to bring the server online with a secure HTTPS connection.
+Error Encountered: HTTP 429 urn:ietf:params:acme:error:rateLimited - Error creating new order :: too many certificates
+This error occurred due to an excessive number of certificate requests for the same URL, leading to rate limiting by the certificate authority.
+This error was particularly frustrating as it prevented the establishment of a secure connection, which is critical for a production server.
+Solution: The error required creating a completely unique URL to avoid conflicts with existing certificates. It was noted that the certificate authority imposed a limit on the number of certificates issued for URLs with the same ending, necessitating the generation of new, unique URLs to overcome this limitation.
+2. PostgreSQL Database Setup
+Database Created: website_db
+Table Created: cpu_temps
+Columns:
+id: Integer, Primary Key, Auto-increment.
+temperature: Numeric(5,2), Not Null.
+recorded_at: Timestamp, Default CURRENT_TIMESTAMP.
+Primary Key: cpu_temps_pkey on id.
+Commands Used:
+List tables: \dt
+Describe table: \d+ cpu_temps
+Issues Encountered:
+Database Connection Issues:
+The API initially failed to connect to the PostgreSQL database.
+After reviewing the connection parameters in the api.php script, it was discovered that the host was set to "db", which corresponds to the Docker container name.
+The connection string was verified to ensure the correct host, port, database name, user, and password were used.
+3. API Development with PHP
+A PHP script (api.php) was created to provide a RESTful API for interacting with the cpu_temps table in the website_db database.
+
+API Methods:
+GET /api.php: Retrieve all temperature records.
+GET /api.php?id={id}: Retrieve a specific temperature record by ID.
+POST /api.php: Insert a new temperature record.
+PUT /api.php?id={id}: Update an existing temperature record.
+DELETE /api.php?id={id}: Delete a temperature record.
+PostgreSQL Connection Parameters:
+Host: db (Docker container name)
+Port: 5432
+Database Name: website_db
+User: postgres
+Password: gfg
+Sample API Requests:
+curl -X POST -H "Content-Type: application/json" -d '{"temperature": 72.50}' http://localhost/api.php
+curl -X GET http://localhost/api.php
+Issues Encountered:
+No Response from API:
+
+Initial curl requests to the API returned no response. The issue was traced back to connection problems with the PostgreSQL database and potential SSL/TLS misconfigurations.
+The api.php script was adjusted for better error handling and clearer output in case of failures.
+SSL/TLS Handshake Errors:
+
+When trying to access the API over HTTPS, SSL/TLS handshake errors were encountered.
+This issue was attributed to the Caddy web server configuration and a possible mismatch in SSL certificate settings.
+4. Troubleshooting Steps
+API Access Issues:
+Repeated attempts to access the API using curl initially yielded no response.
+The connection string in api.php was verified and corrected, ensuring the correct database and server parameters were being used.
+SSL/TLS Issues:
+The server was configured to redirect HTTP requests to HTTPS, which caused issues due to incomplete or incorrect SSL/TLS settings.
+Attempts to resolve these errors involved examining the SSL certificates and ensuring proper configuration within Caddy.
+Firewall Configuration:
+It was verified that ufw (firewall) was inactive, ruling out firewall restrictions as a cause of the connection issues.
+5. Issues Encountered
+SSL/TLS Configuration Problems:
+
+The server encountered an "internal error" during the TLS handshake when trying to access the API via HTTPS.
+This was likely due to misconfigurations in the Caddy web server's SSL settings, which require further investigation.
+Port Configuration Confusion:
+
+There was initial confusion regarding which port to use for the API. The PostgreSQL service runs on port 5432, while the web server could have been configured to use another port, such as 1234.
+Ultimately, the default ports were maintained to avoid further complications.
+6. Final Outcome
+API Functional: After multiple adjustments, the API was able to successfully connect to the PostgreSQL database and perform CRUD operations.
+SSL/TLS Issues Remain: Despite successful API operations, SSL/TLS handshake errors persist when attempting to use HTTPS.
+7. Next Steps
+Resolve SSL/TLS Handshake Issues: Further investigate and resolve the TLS handshake errors to ensure secure HTTPS communication.
+Enhance API Security: Consider implementing API key authentication or OAuth to secure access to the API endpoints.
+Improve Error Logging: Enhance the PHP API script with more detailed logging to aid in troubleshooting any future issues.
