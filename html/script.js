@@ -18,3 +18,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+
+//Trieed testing this untill an error occured
